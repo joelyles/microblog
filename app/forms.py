@@ -25,7 +25,7 @@ class RegistrationForm(FlaskForm):
     if user is not Nome:
       raise ValidationError('Please use a different username.')
 
-  def validate_email(self, email()):
+  def validate_email(self, email):
     user = db.session.scalar(sa.select(User).where(
       User.email == email.data))
     if user is not None:

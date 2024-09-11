@@ -1,6 +1,6 @@
 from urllib.parse import urlsplit
 from flask import render_template, flash, redirect, url_for, request
-from flask_login import login_user, current_user, login_required
+from flask_login import login_user, logout_user, current_user, login_required
 import sqlalchemy as sa
 from app import app, db
 from app.forms import LoginForm
@@ -54,8 +54,7 @@ def login():
     return redirect(url_for('index'))
   return render_template('login.html', title='Sign In', form=form)
 
-"""   @app.route('logout')
-  @login_required
+  @app.route('/logout')
   def logout():
     logout_user()
-    return redirect('/index') """
+    return redirect(url_for('/index'))
