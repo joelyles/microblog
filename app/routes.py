@@ -10,7 +10,6 @@ from app.models import User
 @app.route('/index')
 @login_required
 def index():
-  user = {'username': 'Joe'}
   posts = [
     {
       'author': {'username': 'John'},
@@ -31,10 +30,6 @@ def index():
   ]
   return render_template('index.html', title='Home', posts=posts)
 
-@app.route('/about')
-def about():
-  return render_template('about.html', title="about")
-
 @app.route('/login', methods=['GET', 'POST'])
 def login():
   if current_user.is_authenticated:
@@ -53,10 +48,10 @@ def login():
     return redirect(next_page)
   return render_template('login.html', title='Sign In', form=form)
 
-  @app.route('/logout')
-  def logout():
-    logout_user()
-    return redirect(url_for('index'))
+@app.route('/logout')
+def logout():
+  logout_user()
+  return redirect(url_for('index'))
 
   @app.route('/register', methods=['GET', 'POST'])
   def register():
